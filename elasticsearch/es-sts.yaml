@@ -4,7 +4,7 @@ metadata:
   name: es-cluster
 spec:
   serviceName: elasticsearch
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: elasticsearch
@@ -68,7 +68,7 @@ spec:
         app: elasticsearch
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      # storageClassName: ""
+      storageClassName: "local-path"
       resources:
         requests:
           storage: 3Gi

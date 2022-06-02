@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oss-logs-cm
+data:
+  oss.conf: |
+    # OSS logs
+    <source>
+      @type tail
+      format none
+      path /var/log/oss/*.log
+      @id oss
+      <storage>
+        @type local
+        persistent true
+        path /var/log/oss.json
+      </storage>
+      <entry>
+        fields_strip_underscores true
+      </entry>
+      read_from_head true
+      tag oss.systemd
+    </source>
+  # user-interface.properties: |
+  #   color.good=purple
+  #   color.bad=yellow
+  #   allow.textmode=true    
